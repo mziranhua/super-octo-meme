@@ -1,0 +1,13 @@
+[local]
+localhost ansible_connection=local
+
+[local:vars]
+chroot_path=/var/bionic_chroot
+chroot_distro=bionic
+chroot_mirror=http://archive.ubuntu.com/ubuntu/
+
+[chroot]
+/var/bionic_chroot
+
+[chroot:vars]
+ansible_python_interpreter=/usr/bin/python3

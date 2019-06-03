@@ -1,0 +1,10 @@
+---
+- hosts: chroot
+  connection: chroot
+  tasks:
+
+    - name: test that shit!
+      package: 
+        name: screen 
+        state: present
+        

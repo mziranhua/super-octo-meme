@@ -1,0 +1,27 @@
+---
+- name: Create chroot
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+  tasks:
+
+    - name: enable epel
+      package:
+        name: epel-release
+        state: present
+
+    - name: install debootstrap
+      package:
+        name: debootstrap
+        state: present
+
+    - name: create chroot directory
+      file:
+        path: "{{ chroot_path }}"
+        state: directory
+        owner: root
+        group: root
+        mode: '0711'
+
+    - name: bootstrap chroot
+      shell: debootstrap --arch=amd64 {{ chroot_distro }} {{ chroot_path }} {{ chroot_mirror }}
